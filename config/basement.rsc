@@ -1,4 +1,4 @@
-# 2025-08-07 10:16:12 by RouterOS 7.19.4
+# 2025-08-07 10:41:26 by RouterOS 7.19.4
 # software id = L7YE-YED4
 #
 # model = C52iG-5HaxD2HaxD
@@ -46,9 +46,6 @@ add address=192.168.89.0/24 comment=defconf dns-server=192.168.89.1 gateway=\
 set allow-remote-requests=yes
 /ip dns static
 add address=192.168.89.1 comment=defconf name=router.lan type=A
-/ip firewall nat
-add action=masquerade chain=srcnat comment="defconf: masquerade" disabled=yes \
-    ipsec-policy=out,none out-interface-list=WAN
 /ipv6 firewall address-list
 add address=::/128 comment="defconf: unspecified address" list=bad_ipv6
 add address=::1/128 comment="defconf: lo" list=bad_ipv6
