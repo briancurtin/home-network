@@ -1,4 +1,4 @@
-# 2025-08-06 09:03:26 by RouterOS 7.19.4
+# 2025-08-06 14:19:08 by RouterOS 7.19.4
 # software id = L7YE-YED4
 #
 # model = C52iG-5HaxD2HaxD
@@ -62,6 +62,8 @@ add address=2001:10::/28 comment="defconf: ORCHID" list=bad_ipv6
 add address=3ffe::/16 comment="defconf: 6bone" list=bad_ipv6
 /system clock
 set time-zone-name=America/Denver
+/system identity
+set name=Basement
 /tool mac-server
 set allowed-interface-list=LAN
 /tool mac-server mac-winbox
