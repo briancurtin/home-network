@@ -1,4 +1,4 @@
-# 1970-01-02 19:43:46 by RouterOS 7.15.2
+# 1970-01-02 22:51:40 by RouterOS 7.15.2
 # software id = STDB-BJED
 #
 # model = C52iG-5HaxD2HaxD
@@ -6,9 +6,9 @@
 add name=bridge
 /interface wifi
 set [ find default-name=wifi1 ] configuration.country="United States" .mode=\
-    station .ssid="Olive Pit" disabled=no
+    station-bridge .ssid="Olive Pit" disabled=no
 set [ find default-name=wifi2 ] configuration.country="United States" .mode=\
-    station .ssid="Olive Pit" disabled=no
+    station-bridge .ssid="Olive Pit"
 /interface list
 add name=WAN
 add name=LAN
