@@ -1,8 +1,7 @@
-# 1970-01-02 00:14:01 by RouterOS 7.15.2
+# 1970-01-02 18:20:43 by RouterOS 7.15.2
 # software id = STDB-BJED
 #
 # model = C52iG-5HaxD2HaxD
-# serial number = HH30A7RNQ3Q
 /interface bridge
 add name=bridge1
 /interface wifi
@@ -19,11 +18,11 @@ add bridge=bridge1 interface=ether2
 add bridge=bridge1 interface=ether3
 add bridge=bridge1 interface=ether4
 add bridge=bridge1 interface=ether5
-add bridge=bridge1 interface=wifi1
 /interface list member
 add interface=bridge1 list=LAN
+add interface=wifi1 list=WAN
 /ip address
-add address=192.168.90.1/24 interface=ether2 network=192.168.90.0
+add address=192.168.90.1 interface=bridge1 network=192.168.90.1
 /system identity
 set name=Garage
 /system note
