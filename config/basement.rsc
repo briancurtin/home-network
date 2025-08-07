@@ -1,4 +1,4 @@
-# 2025-08-06 14:19:08 by RouterOS 7.19.4
+# 2025-08-07 10:16:12 by RouterOS 7.19.4
 # software id = L7YE-YED4
 #
 # model = C52iG-5HaxD2HaxD
@@ -38,8 +38,7 @@ set discover-interface-list=LAN
 /interface list member
 add interface=bridge list=LAN
 /ip address
-add address=192.168.89.1/24 comment=defconf interface=bridge network=\
-    192.168.89.0
+add address=192.168.89.1/24 interface=bridge network=192.168.89.0
 /ip dhcp-server network
 add address=192.168.89.0/24 comment=defconf dns-server=192.168.89.1 gateway=\
     192.168.89.1 netmask=24
