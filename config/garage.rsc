@@ -1,4 +1,4 @@
-# 1970-01-02 22:58:32 by RouterOS 7.15.2
+# 2025-08-08 08:14:26 by RouterOS 7.19.4
 # software id = STDB-BJED
 #
 # model = C52iG-5HaxD2HaxD
@@ -24,14 +24,18 @@ add interface=bridge list=LAN
 add interface=wifi1 list=WAN
 /ip address
 add address=192.168.90.1/24 interface=bridge network=192.168.90.0
+/ip dhcp-client
+add interface=bridge
 /ip dns
 set servers=192.168.0.1
+/ip ipsec profile
+set [ find default=yes ] dpd-interval=2m dpd-maximum-failures=5
 /ip route
 add disabled=no distance=1 dst-address=0.0.0.0/0 gateway=bridge \
     routing-table=main scope=30 suppress-hw-offload=no target-scope=10
+/system clock
+set time-zone-name=America/Denver
 /system identity
 set name=Garage
-/system note
-set show-at-login=no
 /system ntp client servers
 add address=192.168.0.1
