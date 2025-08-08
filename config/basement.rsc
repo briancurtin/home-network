@@ -1,4 +1,4 @@
-# 2025-08-07 14:53:43 by RouterOS 7.19.4
+# 2025-08-08 07:56:31 by RouterOS 7.19.4
 # software id = L7YE-YED4
 #
 # model = C52iG-5HaxD2HaxD
@@ -37,6 +37,8 @@ set discover-interface-list=LAN
 add interface=bridge list=LAN
 /ip address
 add address=192.168.89.1/24 interface=bridge network=192.168.89.0
+/ip dhcp-client
+add interface=bridge
 /ip dns
 set allow-remote-requests=yes
 /system clock
