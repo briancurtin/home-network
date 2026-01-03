@@ -1,4 +1,4 @@
-# 2026-01-02 23:17:57 by RouterOS 7.20.6
+# 2026-01-03 01:01:03 by RouterOS 7.20.6
 # software id = N349-62RF
 #
 # model = C53UiG+5HPaxD2HPaxD
@@ -23,6 +23,9 @@ add comment=defconf name=LAN
 add name=default-dhcp ranges=192.168.88.10-192.168.88.254
 /ip dhcp-server
 add address-pool=default-dhcp disabled=yes interface=bridge name=defconf
+/user group
+add name=homeassistant policy="read,test,api,!local,!telnet,!ssh,!ftp,!reboot,\
+    !write,!policy,!winbox,!password,!web,!sniff,!sensitive,!romon,!rest-api"
 /disk settings
 set auto-media-interface=bridge auto-media-sharing=yes auto-smb-sharing=yes
 /interface bridge port
