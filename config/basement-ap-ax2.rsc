@@ -1,4 +1,4 @@
-# 2026-01-02 22:22:21 by RouterOS 7.20.6
+# 2026-01-02 23:19:01 by RouterOS 7.20.6
 # software id = L7YE-YED4
 #
 # model = C52iG-5HaxD2HaxD
@@ -41,8 +41,6 @@ add bridge=bridge comment="Upstream from ax3" interface=ether1
 set discover-interface-list=LAN
 /interface list member
 add interface=bridge list=LAN
-/ip address
-add address=192.168.89.1/24 interface=bridge network=192.168.89.0
 /ip dhcp-client
 add interface=bridge
 /ip dns

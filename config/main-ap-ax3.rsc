@@ -1,4 +1,4 @@
-# 2025-07-27 10:38:49 by RouterOS 7.19.4
+# 2026-01-02 23:17:57 by RouterOS 7.20.6
 # software id = N349-62RF
 #
 # model = C53UiG+5HPaxD2HPaxD
@@ -8,19 +8,21 @@ add admin-mac=04:F4:1C:04:E9:49 auto-mac=no comment=defconf name=bridge
 /interface wifi
 set [ find default-name=wifi1 ] channel.band=5ghz-ax .skip-dfs-channels=\
     10min-cac .width=20/40/80mhz configuration.country="United States" .mode=\
-    ap .ssid="Olive Pit Test" disabled=no security.authentication-types=\
+    ap .ssid="Olive Pit" disabled=no security.authentication-types=\
     wpa2-psk,wpa3-psk .ft=yes .ft-over-ds=yes
 set [ find default-name=wifi2 ] channel.band=2ghz-ax .skip-dfs-channels=\
     10min-cac .width=20/40mhz configuration.country="United States" .mode=ap \
-    .ssid="Olive Pit Test 25" disabled=no security.authentication-types=\
+    .ssid="Olive Pit" disabled=no security.authentication-types=\
     wpa2-psk,wpa3-psk .ft=yes .ft-over-ds=yes
+/interface ethernet switch
+set 0 cpu-flow-control=yes
 /interface list
 add comment=defconf name=WAN
 add comment=defconf name=LAN
 /ip pool
 add name=default-dhcp ranges=192.168.88.10-192.168.88.254
 /ip dhcp-server
-add address-pool=default-dhcp interface=bridge name=defconf
+add address-pool=default-dhcp disabled=yes interface=bridge name=defconf
 /disk settings
 set auto-media-interface=bridge auto-media-sharing=yes auto-smb-sharing=yes
 /interface bridge port
@@ -39,12 +41,13 @@ add comment=defconf interface=bridge list=LAN
 add address=192.168.88.1/24 comment=defconf disabled=yes interface=bridge \
     network=192.168.88.0
 /ip dhcp-client
-add comment=defconf disabled=yes interface=ether1
+# DHCP client can not run on slave or passthrough interface!
+add comment=defconf interface=ether1
 /ip dhcp-server network
 add address=192.168.88.0/24 comment=defconf dns-server=192.168.88.1 gateway=\
     192.168.88.1
 /ip dns
-set allow-remote-requests=yes
+set allow-remote-requests=yes servers=192.168.88.1
 /ip dns static
 add address=192.168.88.1 comment=defconf name=router.lan type=A
 /ip firewall filter
@@ -136,6 +139,8 @@ add action=accept chain=forward comment=\
 add action=drop chain=forward comment=\
     "defconf: drop everything else not coming from LAN" in-interface-list=\
     !LAN
+/system clock
+set time-zone-name=America/Denver
 /system identity
 set name=main-ap-ax3
 /system routerboard mode-button

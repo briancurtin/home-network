@@ -1,4 +1,4 @@
-# 2026-01-02 14:26:51 by RouterOS 7.19.4
+# 2026-01-02 23:40:46 by RouterOS 7.20.6
 # software id = STDB-BJED
 #
 # model = C52iG-5HaxD2HaxD
@@ -10,6 +10,8 @@ set [ find default-name=wifi1 ] configuration.country="United States" .mode=\
     station-bridge .ssid="Olive Pit" disabled=no
 set [ find default-name=wifi2 ] configuration.country="United States" .mode=\
     station-bridge .ssid="Olive Pit"
+/interface ethernet switch
+set 0 cpu-flow-control=yes
 /interface list
 add name=WAN
 add name=LAN
@@ -30,7 +32,7 @@ add interface=bridge list=LAN
 add address=192.168.90.1/24 disabled=yes interface=bridge network=\
     192.168.90.0
 /ip dhcp-client
-add disabled=yes interface=bridge
+add interface=bridge
 /ip dns
 set servers=192.168.0.1
 /ip ipsec profile
@@ -38,6 +40,8 @@ set [ find default=yes ] dpd-interval=2m dpd-maximum-failures=5
 /ip route
 add disabled=yes distance=1 dst-address=0.0.0.0/0 gateway=bridge \
     routing-table=main scope=30 suppress-hw-offload=no target-scope=10
+/system clock
+set time-zone-name=America/Denver
 /system identity
 set name=garage-ap-ax2
 /system ntp client servers

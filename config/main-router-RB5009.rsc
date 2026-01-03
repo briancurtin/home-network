@@ -1,4 +1,4 @@
-# 2025-08-21 12:57:33 by RouterOS 7.19.5
+# 2026-01-02 23:41:24 by RouterOS 7.20.6
 # software id = MC0I-ZZJV
 #
 # model = RB5009UPr+S+
@@ -32,16 +32,31 @@ add comment=defconf interface=ether1 list=WAN
 add address=192.168.88.1/24 comment=defconf interface=bridge network=\
     192.168.88.0
 /ip dhcp-client
-# Interface not active
 add comment=defconf interface=ether1
 /ip dhcp-server lease
 add address=192.168.88.2 client-id=1:4:f4:1c:4:e9:48 mac-address=\
     04:F4:1C:04:E9:48 server=defconf
+add address=192.168.88.20 client-id=1:20:f8:3b:1:72:d8 mac-address=\
+    20:F8:3B:01:72:D8 server=defconf
+add address=192.168.88.16 client-id=1:14:ea:63:3e:6d:9d mac-address=\
+    14:EA:63:3E:6D:9D server=defconf
+add address=192.168.88.15 client-id=1:14:ea:63:a9:3:d4 mac-address=\
+    14:EA:63:A9:03:D4 server=defconf
+add address=192.168.88.10 client-id=1:c4:8b:66:e:70:ca mac-address=\
+    C4:8B:66:0E:70:CA server=defconf
+add address=192.168.88.21 client-id=1:90:9:d0:40:65:d3 mac-address=\
+    90:09:D0:40:65:D3 server=defconf
+add address=192.168.88.3 client-id=1:f4:1e:57:b2:f7:37 mac-address=\
+    F4:1E:57:B2:F7:37 server=defconf
+add address=192.168.88.14 client-id=1:ec:71:db:9c:f:e2 mac-address=\
+    EC:71:DB:9C:0F:E2 server=defconf
+add address=192.168.88.4 client-id=1:f4:1e:57:4a:4f:59 mac-address=\
+    F4:1E:57:4A:4F:59 server=defconf
 /ip dhcp-server network
 add address=192.168.88.0/24 comment=defconf dns-server=192.168.88.1 gateway=\
     192.168.88.1
 /ip dns
-set allow-remote-requests=yes
+set allow-remote-requests=yes servers=8.8.8.8,8.8.4.4
 /ip dns static
 add address=192.168.88.1 comment=defconf name=router.lan type=A
 /ip firewall filter
@@ -133,8 +148,12 @@ add action=accept chain=forward comment=\
 add action=drop chain=forward comment=\
     "defconf: drop everything else not coming from LAN" in-interface-list=\
     !LAN
+/system clock
+set time-zone-name=America/Denver
 /system identity
 set name=main-router-RB5009
+/system ntp client servers
+add address=pool.ntp.org
 /tool mac-server
 set allowed-interface-list=LAN
 /tool mac-server mac-winbox
